@@ -1,0 +1,30 @@
+{
+  "bankApp": {
+    "productsClientAccount": {
+      "home": {
+        "title": "Client Accounts",
+        "createLabel": "Create a new Client Account",
+        "createOrEditLabel": "Create or edit a Client Account",
+        "notFound": "No Client Accounts found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Client Account {{ id }}?"
+      },
+      "detail": {
+        "title": "Client Account"
+      },
+      "customerID": "Customer ID",
+      "iban": "Iban",
+      "name": "Name",
+      "ballance": "Ballance",
+      "userId": "User Id"
+    }
+  },
+  "productsApp": {
+    "productsClientAccount": {
+      "created": "A new Client Account is created with identifier {{ param }}",
+      "updated": "A Client Account is updated with identifier {{ param }}",
+      "deleted": "A Client Account is deleted with identifier {{ param }}"
+    }
+  }
+}

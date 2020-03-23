@@ -1,0 +1,53 @@
+{
+  "generator-jhipster": {
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "clientFramework": "angularX",
+    "serverPort": "8080",
+    "serviceDiscoveryType": "eureka",
+    "skipUserManagement": false,
+    "baseName": "bank",
+    "buildTool": "maven",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": ["en", "fr"],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "skipClient": false,
+    "testFrameworks": ["protractor"],
+    "websocket": false,
+    "applicationType": "gateway",
+    "packageName": "com.adrianbadarau.bank",
+    "packageFolder": "com/adrianbadarau/bank",
+    "useSass": true,
+    "jhipsterVersion": "6.8.0",
+    "creationTimestamp": 1584989520824,
+    "skipServer": false,
+    "clientPackageManager": "npm",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "jwtSecretKey": "YjI2ZDUwNDQ0YTFmOTM3OTMzNzc5ZTIyMTZhYjZlMmQzYmQ2NDA5MjkwMDM5NDViN2M2ZWEyNjhjYjgyOTdmODFhMTMwNTM0YjYwM2NmYjQ4ZjVjZjY3NzE3NGFhM2RjYzhjNTY5YWM2ODdlZjkyOGM3NzAwM2FjNWRlNzg5YjQ=",
+    "embeddableLaunchScript": false,
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-kotlin",
+        "version": "1.6.0"
+      }
+    ],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-kotlin",
+        "version": "1.6.0"
+      }
+    ]
+  },
+  "entities": ["Product", "ClientAccount", "Transaction"]
+}

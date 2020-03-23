@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="bankApp.transactionsTransaction.detail.title">Transaction</span> {{ transaction.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankApp.transactionsTransaction.accountId">Account Id</span></dt>
+                <dd>
+                    <span>{{ transaction.accountId }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankApp.transactionsTransaction.value">Value</span></dt>
+                <dd>
+                    <span>{{ transaction.value }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankApp.transactionsTransaction.date">Date</span></dt>
+                <dd>
+                    <span>{{ transaction.date }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankApp.transactionsTransaction.details">Details</span></dt>
+                <dd>
+                    <span>{{ transaction.details }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
