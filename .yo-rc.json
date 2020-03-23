@@ -27,7 +27,7 @@
     "packageFolder": "com/adrianbadarau/bank",
     "useSass": true,
     "jhipsterVersion": "6.8.0",
-    "creationTimestamp": 1584989520824,
+    "creationTimestamp": 1584993300450,
     "skipServer": false,
     "clientPackageManager": "npm",
     "clientTheme": "none",

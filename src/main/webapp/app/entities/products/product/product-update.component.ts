@@ -9,8 +9,6 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IProduct, Product } from 'app/shared/model/products/product.model';
 import { ProductService } from './product.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
-import { IClientAccount } from 'app/shared/model/products/client-account.model';
-import { ClientAccountService } from 'app/entities/products/client-account/client-account.service';
 
 @Component({
   selector: 'jhi-product-update',
@@ -18,22 +16,19 @@ import { ClientAccountService } from 'app/entities/products/client-account/clien
 })
 export class ProductUpdateComponent implements OnInit {
   isSaving = false;
-  clientaccounts: IClientAccount[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
     description: [],
     image: [],
-    imageContentType: [],
-    type: [null, Validators.required]
+    imageContentType: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected productService: ProductService,
-    protected clientAccountService: ClientAccountService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -42,8 +37,6 @@ export class ProductUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ product }) => {
       this.updateForm(product);
-
-      this.clientAccountService.query().subscribe((res: HttpResponse<IClientAccount[]>) => (this.clientaccounts = res.body || []));
     });
   }
 
@@ -53,8 +46,7 @@ export class ProductUpdateComponent implements OnInit {
       name: product.name,
       description: product.description,
       image: product.image,
-      imageContentType: product.imageContentType,
-      type: product.type
+      imageContentType: product.imageContentType
     });
   }
 
@@ -105,8 +97,7 @@ export class ProductUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       description: this.editForm.get(['description'])!.value,
       imageContentType: this.editForm.get(['imageContentType'])!.value,
-      image: this.editForm.get(['image'])!.value,
-      type: this.editForm.get(['type'])!.value
+      image: this.editForm.get(['image'])!.value
     };
   }
 
@@ -124,9 +115,5 @@ export class ProductUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IClientAccount): any {
-    return item.id;
   }
 }

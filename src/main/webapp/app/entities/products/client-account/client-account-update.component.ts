@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { IClientAccount, ClientAccount } from 'app/shared/model/products/client-account.model';
 import { ClientAccountService } from './client-account.service';
+import { IProduct } from 'app/shared/model/products/product.model';
+import { ProductService } from 'app/entities/products/product/product.service';
 
 @Component({
   selector: 'jhi-client-account-update',
@@ -14,6 +16,7 @@ import { ClientAccountService } from './client-account.service';
 })
 export class ClientAccountUpdateComponent implements OnInit {
   isSaving = false;
+  products: IProduct[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -21,14 +24,22 @@ export class ClientAccountUpdateComponent implements OnInit {
     iban: [null, [Validators.required]],
     name: [null, [Validators.required]],
     ballance: [null, [Validators.required]],
-    userId: [null, [Validators.required]]
+    userId: [null, [Validators.required]],
+    type: [null, Validators.required]
   });
 
-  constructor(protected clientAccountService: ClientAccountService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected clientAccountService: ClientAccountService,
+    protected productService: ProductService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ clientAccount }) => {
       this.updateForm(clientAccount);
+
+      this.productService.query().subscribe((res: HttpResponse<IProduct[]>) => (this.products = res.body || []));
     });
   }
 
@@ -39,7 +50,8 @@ export class ClientAccountUpdateComponent implements OnInit {
       iban: clientAccount.iban,
       name: clientAccount.name,
       ballance: clientAccount.ballance,
-      userId: clientAccount.userId
+      userId: clientAccount.userId,
+      type: clientAccount.type
     });
   }
 
@@ -65,7 +77,8 @@ export class ClientAccountUpdateComponent implements OnInit {
       iban: this.editForm.get(['iban'])!.value,
       name: this.editForm.get(['name'])!.value,
       ballance: this.editForm.get(['ballance'])!.value,
-      userId: this.editForm.get(['userId'])!.value
+      userId: this.editForm.get(['userId'])!.value,
+      type: this.editForm.get(['type'])!.value
     };
   }
 
@@ -83,5 +96,9 @@ export class ClientAccountUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IProduct): any {
+    return item.id;
   }
 }

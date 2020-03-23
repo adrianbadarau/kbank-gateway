@@ -35,6 +35,8 @@ export class ClientAccountUpdatePage {
   ballanceInput = element(by.id('field_ballance'));
   userIdInput = element(by.id('field_userId'));
 
+  typeSelect = element(by.id('field_type'));
+
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
   }
@@ -77,6 +79,25 @@ export class ClientAccountUpdatePage {
 
   async getUserIdInput(): Promise<string> {
     return await this.userIdInput.getAttribute('value');
+  }
+
+  async typeSelectLastOption(): Promise<void> {
+    await this.typeSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async typeSelectOption(option: string): Promise<void> {
+    await this.typeSelect.sendKeys(option);
+  }
+
+  getTypeSelect(): ElementFinder {
+    return this.typeSelect;
+  }
+
+  async getTypeSelectedOption(): Promise<string> {
+    return await this.typeSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {

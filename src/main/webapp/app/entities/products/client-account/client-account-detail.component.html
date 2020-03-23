@@ -28,6 +28,12 @@
                 <dd>
                     <span>{{ clientAccount.userId }}</span>
                 </dd>
+                <dt><span jhiTranslate="bankApp.productsClientAccount.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="clientAccount.type">
+                        <a [routerLink]="['/product', clientAccount.type?.id, 'view']">{{ clientAccount.type?.name }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

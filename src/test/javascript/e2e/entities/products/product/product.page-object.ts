@@ -33,8 +33,6 @@ export class ProductUpdatePage {
   descriptionInput = element(by.id('field_description'));
   imageInput = element(by.id('file_image'));
 
-  typeSelect = element(by.id('field_type'));
-
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
   }
@@ -61,25 +59,6 @@ export class ProductUpdatePage {
 
   async getImageInput(): Promise<string> {
     return await this.imageInput.getAttribute('value');
-  }
-
-  async typeSelectLastOption(): Promise<void> {
-    await this.typeSelect
-      .all(by.tagName('option'))
-      .last()
-      .click();
-  }
-
-  async typeSelectOption(option: string): Promise<void> {
-    await this.typeSelect.sendKeys(option);
-  }
-
-  getTypeSelect(): ElementFinder {
-    return this.typeSelect;
-  }
-
-  async getTypeSelectedOption(): Promise<string> {
-    return await this.typeSelect.element(by.css('option:checked')).getText();
   }
 
   async save(): Promise<void> {
