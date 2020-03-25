@@ -65,7 +65,7 @@ export class ClientAccountComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackId(index: number, item: IClientAccount): number {
+  trackId(index: number, item: IClientAccount): string {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
   }

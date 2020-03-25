@@ -24,9 +24,9 @@
                 <dd>
                     <span>{{ clientAccount.ballance }}</span>
                 </dd>
-                <dt><span jhiTranslate="bankApp.productsClientAccount.userId">User Id</span></dt>
+                <dt><span jhiTranslate="bankApp.productsClientAccount.userId">User</span></dt>
                 <dd>
-                    <span>{{ clientAccount.userId }}</span>
+                    <span>{{ clientAccount.user }}</span>
                 </dd>
                 <dt><span jhiTranslate="bankApp.productsClientAccount.type">Type</span></dt>
                 <dd>
@@ -34,6 +34,15 @@
                         <a [routerLink]="['/product', clientAccount.type?.id, 'view']">{{ clientAccount.type?.name }}</a>
                     </div>
                 </dd>
+            </dl>
+
+            <h4>Transactions</h4>
+            <br>
+
+            <dl *ngFor="let transaction of transactions">
+                <span>Value: {{transaction.value}}</span>
+                <span>Details {{transaction.details}}</span>
+                <span>Date: {{transaction.date | date}}</span>
             </dl>
 
             <button type="submit"

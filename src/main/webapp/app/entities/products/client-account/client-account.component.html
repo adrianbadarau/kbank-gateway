@@ -27,7 +27,6 @@
                     <th scope="col"  jhiSortBy="iban"><span jhiTranslate="bankApp.productsClientAccount.iban">Iban</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="bankApp.productsClientAccount.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="ballance"><span jhiTranslate="bankApp.productsClientAccount.ballance">Ballance</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="userId"><span jhiTranslate="bankApp.productsClientAccount.userId">User Id</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="type.name"><span jhiTranslate="bankApp.productsClientAccount.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -39,7 +38,6 @@
                     <td>{{ clientAccount.iban }}</td>
                     <td>{{ clientAccount.name }}</td>
                     <td>{{ clientAccount.ballance }}</td>
-                    <td>{{ clientAccount.userId }}</td>
                     <td>
                         <div *ngIf="clientAccount.type">
                             <a [routerLink]="['/product', clientAccount.type?.id, 'view']" >{{ clientAccount.type?.name }}</a>
