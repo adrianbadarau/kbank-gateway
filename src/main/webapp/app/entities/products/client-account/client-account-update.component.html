@@ -78,6 +78,20 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankApp.productsClientAccount.type" for="field_type">Type</label>
+                    <select class="form-control" id="field_type" name="type" formControlName="type">
+                        <option *ngIf="!editForm.get('type')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="productOption.id === editForm.get('type')!.value?.id ? editForm.get('type')!.value : productOption" *ngFor="let productOption of products; trackBy: trackById">{{ productOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
             </div>
 
             <div>

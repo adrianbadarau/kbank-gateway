@@ -26,7 +26,6 @@
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="bankApp.productsProduct.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="description"><span jhiTranslate="bankApp.productsProduct.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="image"><span jhiTranslate="bankApp.productsProduct.image">Image</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="type.name"><span jhiTranslate="bankApp.productsProduct.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -40,11 +39,6 @@
                             <img [src]="'data:' + product.imageContentType + ';base64,' + product.image" style="max-height: 30px;" alt="product image"/>
                         </a>
                         <span *ngIf="product.image">{{ product.imageContentType }}, {{ byteSize(product.image) }}</span>
-                    </td>
-                    <td>
-                        <div *ngIf="product.type">
-                            <a [routerLink]="['/client-account', product.type?.id, 'view']" >{{ product.type?.name }}</a>
-                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

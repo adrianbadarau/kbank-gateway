@@ -17,7 +17,8 @@
       "iban": "Iban",
       "name": "Name",
       "ballance": "Ballance",
-      "userId": "User Id"
+      "userId": "User Id",
+      "type": "Type"
     }
   },
   "productsApp": {

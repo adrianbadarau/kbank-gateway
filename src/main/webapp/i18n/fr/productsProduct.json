@@ -15,8 +15,7 @@
       },
       "name": "Name",
       "description": "Description",
-      "image": "Image",
-      "type": "Type"
+      "image": "Image"
     }
   },
   "productsApp": {

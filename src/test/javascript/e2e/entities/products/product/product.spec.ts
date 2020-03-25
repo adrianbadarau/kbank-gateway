@@ -1,11 +1,7 @@
-import { browser, ExpectedConditions as ec /* , promise */ } from 'protractor';
+import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../../page-objects/jhi-page-objects';
 
-import {
-  ProductComponentsPage,
-  /* ProductDeleteDialog, */
-  ProductUpdatePage
-} from './product.page-object';
+import { ProductComponentsPage, ProductDeleteDialog, ProductUpdatePage } from './product.page-object';
 import * as path from 'path';
 
 const expect = chai.expect;
@@ -15,7 +11,7 @@ describe('Product e2e test', () => {
   let signInPage: SignInPage;
   let productComponentsPage: ProductComponentsPage;
   let productUpdatePage: ProductUpdatePage;
-  /* let productDeleteDialog: ProductDeleteDialog; */
+  let productDeleteDialog: ProductDeleteDialog;
   const fileNameToUpload = 'logo-jhipster.png';
   const fileToUpload = '../../../../../../../src/main/webapp/content/images/' + fileNameToUpload;
   const absolutePath = path.resolve(__dirname, fileToUpload);
@@ -43,39 +39,40 @@ describe('Product e2e test', () => {
     await productUpdatePage.cancel();
   });
 
-  /* it('should create and save Products', async () => {
-        const nbButtonsBeforeCreate = await productComponentsPage.countDeleteButtons();
+  it('should create and save Products', async () => {
+    const nbButtonsBeforeCreate = await productComponentsPage.countDeleteButtons();
 
-        await productComponentsPage.clickOnCreateButton();
+    await productComponentsPage.clickOnCreateButton();
 
-        await promise.all([
-            productUpdatePage.setNameInput('name'),
-            productUpdatePage.setDescriptionInput('description'),
-            productUpdatePage.setImageInput(absolutePath),
-            productUpdatePage.typeSelectLastOption(),
-        ]);
+    await promise.all([
+      productUpdatePage.setNameInput('name'),
+      productUpdatePage.setDescriptionInput('description'),
+      productUpdatePage.setImageInput(absolutePath)
+    ]);
 
-        expect(await productUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
-        expect(await productUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
-        expect(await productUpdatePage.getImageInput()).to.endsWith(fileNameToUpload, 'Expected Image value to be end with ' + fileNameToUpload);
+    expect(await productUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
+    expect(await productUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
+    expect(await productUpdatePage.getImageInput()).to.endsWith(
+      fileNameToUpload,
+      'Expected Image value to be end with ' + fileNameToUpload
+    );
 
-        await productUpdatePage.save();
-        expect(await productUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+    await productUpdatePage.save();
+    expect(await productUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-        expect(await productComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-    }); */
+    expect(await productComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+  });
 
-  /* it('should delete last Product', async () => {
-        const nbButtonsBeforeDelete = await productComponentsPage.countDeleteButtons();
-        await productComponentsPage.clickOnLastDeleteButton();
+  it('should delete last Product', async () => {
+    const nbButtonsBeforeDelete = await productComponentsPage.countDeleteButtons();
+    await productComponentsPage.clickOnLastDeleteButton();
 
-        productDeleteDialog = new ProductDeleteDialog();
-        expect(await productDeleteDialog.getDialogTitle())
-            .to.eq('bankApp.productsProduct.delete.question');
-        await productDeleteDialog.clickOnConfirmButton();
+    productDeleteDialog = new ProductDeleteDialog();
+    expect(await productDeleteDialog.getDialogTitle()).to.eq('bankApp.productsProduct.delete.question');
+    await productDeleteDialog.clickOnConfirmButton();
 
-        expect(await productComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-    }); */
+    expect(await productComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+  });
 
   after(async () => {
     await navBarPage.autoSignOut();

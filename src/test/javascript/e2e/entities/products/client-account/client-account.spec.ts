@@ -1,7 +1,11 @@
-import { browser, ExpectedConditions as ec, promise } from 'protractor';
+import { browser, ExpectedConditions as ec /* , promise */ } from 'protractor';
 import { NavBarPage, SignInPage } from '../../../page-objects/jhi-page-objects';
 
-import { ClientAccountComponentsPage, ClientAccountDeleteDialog, ClientAccountUpdatePage } from './client-account.page-object';
+import {
+  ClientAccountComponentsPage,
+  /* ClientAccountDeleteDialog, */
+  ClientAccountUpdatePage
+} from './client-account.page-object';
 
 const expect = chai.expect;
 
@@ -10,7 +14,7 @@ describe('ClientAccount e2e test', () => {
   let signInPage: SignInPage;
   let clientAccountComponentsPage: ClientAccountComponentsPage;
   let clientAccountUpdatePage: ClientAccountUpdatePage;
-  let clientAccountDeleteDialog: ClientAccountDeleteDialog;
+  /* let clientAccountDeleteDialog: ClientAccountDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -38,41 +42,43 @@ describe('ClientAccount e2e test', () => {
     await clientAccountUpdatePage.cancel();
   });
 
-  it('should create and save ClientAccounts', async () => {
-    const nbButtonsBeforeCreate = await clientAccountComponentsPage.countDeleteButtons();
+  /* it('should create and save ClientAccounts', async () => {
+        const nbButtonsBeforeCreate = await clientAccountComponentsPage.countDeleteButtons();
 
-    await clientAccountComponentsPage.clickOnCreateButton();
+        await clientAccountComponentsPage.clickOnCreateButton();
 
-    await promise.all([
-      clientAccountUpdatePage.setCustomerIDInput('customerID'),
-      clientAccountUpdatePage.setIbanInput('iban'),
-      clientAccountUpdatePage.setNameInput('name'),
-      clientAccountUpdatePage.setBallanceInput('5'),
-      clientAccountUpdatePage.setUserIdInput('5')
-    ]);
+        await promise.all([
+            clientAccountUpdatePage.setCustomerIDInput('customerID'),
+            clientAccountUpdatePage.setIbanInput('iban'),
+            clientAccountUpdatePage.setNameInput('name'),
+            clientAccountUpdatePage.setBallanceInput('5'),
+            clientAccountUpdatePage.setUserIdInput('5'),
+            clientAccountUpdatePage.typeSelectLastOption(),
+        ]);
 
-    expect(await clientAccountUpdatePage.getCustomerIDInput()).to.eq('customerID', 'Expected CustomerID value to be equals to customerID');
-    expect(await clientAccountUpdatePage.getIbanInput()).to.eq('iban', 'Expected Iban value to be equals to iban');
-    expect(await clientAccountUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
-    expect(await clientAccountUpdatePage.getBallanceInput()).to.eq('5', 'Expected ballance value to be equals to 5');
-    expect(await clientAccountUpdatePage.getUserIdInput()).to.eq('5', 'Expected userId value to be equals to 5');
+        expect(await clientAccountUpdatePage.getCustomerIDInput()).to.eq('customerID', 'Expected CustomerID value to be equals to customerID');
+        expect(await clientAccountUpdatePage.getIbanInput()).to.eq('iban', 'Expected Iban value to be equals to iban');
+        expect(await clientAccountUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
+        expect(await clientAccountUpdatePage.getBallanceInput()).to.eq('5', 'Expected ballance value to be equals to 5');
+        expect(await clientAccountUpdatePage.getUserIdInput()).to.eq('5', 'Expected userId value to be equals to 5');
 
-    await clientAccountUpdatePage.save();
-    expect(await clientAccountUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await clientAccountUpdatePage.save();
+        expect(await clientAccountUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await clientAccountComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await clientAccountComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last ClientAccount', async () => {
-    const nbButtonsBeforeDelete = await clientAccountComponentsPage.countDeleteButtons();
-    await clientAccountComponentsPage.clickOnLastDeleteButton();
+  /* it('should delete last ClientAccount', async () => {
+        const nbButtonsBeforeDelete = await clientAccountComponentsPage.countDeleteButtons();
+        await clientAccountComponentsPage.clickOnLastDeleteButton();
 
-    clientAccountDeleteDialog = new ClientAccountDeleteDialog();
-    expect(await clientAccountDeleteDialog.getDialogTitle()).to.eq('bankApp.productsClientAccount.delete.question');
-    await clientAccountDeleteDialog.clickOnConfirmButton();
+        clientAccountDeleteDialog = new ClientAccountDeleteDialog();
+        expect(await clientAccountDeleteDialog.getDialogTitle())
+            .to.eq('bankApp.productsClientAccount.delete.question');
+        await clientAccountDeleteDialog.clickOnConfirmButton();
 
-    expect(await clientAccountComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await clientAccountComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

@@ -1,3 +1,5 @@
+import { IProduct } from 'app/shared/model/products/product.model';
+
 export interface IClientAccount {
   id?: number;
   customerID?: string;
@@ -5,6 +7,7 @@ export interface IClientAccount {
   name?: string;
   ballance?: number;
   userId?: number;
+  type?: IProduct;
 }
 
 export class ClientAccount implements IClientAccount {
@@ -14,6 +17,7 @@ export class ClientAccount implements IClientAccount {
     public iban?: string,
     public name?: string,
     public ballance?: number,
-    public userId?: number
+    public userId?: number,
+    public type?: IProduct
   ) {}
 }
