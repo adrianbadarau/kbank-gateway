@@ -8,6 +8,7 @@ export interface IClientAccount {
   ballance?: number;
   user?: string;
   type?: IProduct;
+  initialCredit?: number;
 }
 
 export class ClientAccount implements IClientAccount {
@@ -18,6 +19,7 @@ export class ClientAccount implements IClientAccount {
     public name?: string,
     public ballance?: number,
     public user?: string,
-    public type?: IProduct
+    public type?: IProduct,
+    public initialCredit?: number
   ) {}
 }

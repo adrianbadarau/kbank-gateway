@@ -11,7 +11,7 @@ import { ITransaction } from 'app/shared/model/transactions/transaction.model';
 })
 export class ClientAccountDetailComponent implements OnInit {
   clientAccount: IClientAccount | null = null;
-  transactions: ITransaction[] = [];
+  transactions: ITransaction[] | null = [];
 
   constructor(protected activatedRoute: ActivatedRoute, protected transactionService: TransactionService) {}
 
