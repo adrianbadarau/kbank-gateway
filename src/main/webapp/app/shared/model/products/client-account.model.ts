@@ -1,23 +1,23 @@
 import { IProduct } from 'app/shared/model/products/product.model';
 
 export interface IClientAccount {
-  id?: number;
+  id?: string;
   customerID?: string;
   iban?: string;
   name?: string;
   ballance?: number;
-  userId?: number;
+  user?: string;
   type?: IProduct;
 }
 
 export class ClientAccount implements IClientAccount {
   constructor(
-    public id?: number,
+    public id?: string,
     public customerID?: string,
     public iban?: string,
     public name?: string,
     public ballance?: number,
-    public userId?: number,
+    public user?: string,
     public type?: IProduct
   ) {}
 }
