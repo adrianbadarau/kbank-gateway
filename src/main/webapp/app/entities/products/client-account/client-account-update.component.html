@@ -64,16 +64,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bankApp.productsClientAccount.userId" for="field_userId">User Id</label>
-                    <input type="number" class="form-control" name="userId" id="field_userId"
-                           formControlName="userId"/>
-                    <div *ngIf="editForm.get('userId')!.invalid && (editForm.get('userId')!.dirty || editForm.get('userId')!.touched)">
+                    <label class="form-control-label" jhiTranslate="bankApp.productsClientAccount.user" for="field_user">User Id</label>
+                    <input type="text" class="form-control" name="user" id="field_user"
+                           formControlName="user" readonly/>
+                    <div *ngIf="editForm.get('user')!.invalid && (editForm.get('user')!.dirty || editForm.get('user')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('userId')?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('user')?.errors?.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('userId')?.errors?.number" jhiTranslate="entity.validation.number">
+                            [hidden]="!editForm.get('user')?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>

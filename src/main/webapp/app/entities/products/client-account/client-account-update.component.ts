@@ -9,6 +9,8 @@ import { IClientAccount, ClientAccount } from 'app/shared/model/products/client-
 import { ClientAccountService } from './client-account.service';
 import { IProduct } from 'app/shared/model/products/product.model';
 import { ProductService } from 'app/entities/products/product/product.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 
 @Component({
   selector: 'jhi-client-account-update',
@@ -17,6 +19,7 @@ import { ProductService } from 'app/entities/products/product/product.service';
 export class ClientAccountUpdateComponent implements OnInit {
   isSaving = false;
   products: IProduct[] = [];
+  account: Account | null = null;
 
   editForm = this.fb.group({
     id: [],
@@ -24,7 +27,7 @@ export class ClientAccountUpdateComponent implements OnInit {
     iban: [null, [Validators.required]],
     name: [null, [Validators.required]],
     ballance: [null, [Validators.required]],
-    userId: [null, [Validators.required]],
+    user: [null, [Validators.required]],
     type: [null, Validators.required]
   });
 
@@ -32,7 +35,8 @@ export class ClientAccountUpdateComponent implements OnInit {
     protected clientAccountService: ClientAccountService,
     protected productService: ProductService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +44,10 @@ export class ClientAccountUpdateComponent implements OnInit {
       this.updateForm(clientAccount);
 
       this.productService.query().subscribe((res: HttpResponse<IProduct[]>) => (this.products = res.body || []));
+      this.accountService.getAuthenticationState().subscribe(account => {
+        this.editForm.patchValue({ user: account?.login });
+        console.error(account, this.editForm);
+      });
     });
   }
 
@@ -50,7 +58,6 @@ export class ClientAccountUpdateComponent implements OnInit {
       iban: clientAccount.iban,
       name: clientAccount.name,
       ballance: clientAccount.ballance,
-      userId: clientAccount.userId,
       type: clientAccount.type
     });
   }
@@ -65,6 +72,8 @@ export class ClientAccountUpdateComponent implements OnInit {
     if (clientAccount.id !== undefined) {
       this.subscribeToSaveResponse(this.clientAccountService.update(clientAccount));
     } else {
+      clientAccount.initialCredit = clientAccount.ballance;
+      clientAccount.ballance = 0;
       this.subscribeToSaveResponse(this.clientAccountService.create(clientAccount));
     }
   }
@@ -77,7 +86,7 @@ export class ClientAccountUpdateComponent implements OnInit {
       iban: this.editForm.get(['iban'])!.value,
       name: this.editForm.get(['name'])!.value,
       ballance: this.editForm.get(['ballance'])!.value,
-      userId: this.editForm.get(['userId'])!.value,
+      user: this.editForm.get(['user'])!.value,
       type: this.editForm.get(['type'])!.value
     };
   }
