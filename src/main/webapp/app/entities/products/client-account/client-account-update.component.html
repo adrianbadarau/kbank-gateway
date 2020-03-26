@@ -12,18 +12,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="bankApp.productsClientAccount.customerID" for="field_customerID">Customer ID</label>
-                    <input type="text" class="form-control" name="customerID" id="field_customerID"
-                           formControlName="customerID"/>
-                    <div *ngIf="editForm.get('customerID')!.invalid && (editForm.get('customerID')!.dirty || editForm.get('customerID')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('customerID')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="bankApp.productsClientAccount.iban" for="field_iban">Iban</label>
                     <input type="text" class="form-control" name="iban" id="field_iban"
                            formControlName="iban"/>

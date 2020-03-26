@@ -23,7 +23,6 @@ export class ClientAccountUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    customerID: [null, [Validators.required]],
     iban: [null, [Validators.required]],
     name: [null, [Validators.required]],
     ballance: [null, [Validators.required]],
@@ -54,7 +53,6 @@ export class ClientAccountUpdateComponent implements OnInit {
   updateForm(clientAccount: IClientAccount): void {
     this.editForm.patchValue({
       id: clientAccount.id,
-      customerID: clientAccount.customerID,
       iban: clientAccount.iban,
       name: clientAccount.name,
       ballance: clientAccount.ballance,
@@ -82,7 +80,6 @@ export class ClientAccountUpdateComponent implements OnInit {
     return {
       ...new ClientAccount(),
       id: this.editForm.get(['id'])!.value,
-      customerID: this.editForm.get(['customerID'])!.value,
       iban: this.editForm.get(['iban'])!.value,
       name: this.editForm.get(['name'])!.value,
       ballance: this.editForm.get(['ballance'])!.value,

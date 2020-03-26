@@ -23,7 +23,6 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="customerID"><span jhiTranslate="bankApp.productsClientAccount.customerID">Customer ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="iban"><span jhiTranslate="bankApp.productsClientAccount.iban">Iban</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="bankApp.productsClientAccount.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="ballance"><span jhiTranslate="bankApp.productsClientAccount.ballance">Ballance</span> <fa-icon icon="sort"></fa-icon></th>
@@ -34,7 +33,6 @@
             <tbody>
                 <tr *ngFor="let clientAccount of clientAccounts ;trackBy: trackId">
                     <td><a [routerLink]="['/client-account', clientAccount.id, 'view']">{{ clientAccount.id }}</a></td>
-                    <td>{{ clientAccount.customerID }}</td>
                     <td>{{ clientAccount.iban }}</td>
                     <td>{{ clientAccount.name }}</td>
                     <td>{{ clientAccount.ballance }}</td>

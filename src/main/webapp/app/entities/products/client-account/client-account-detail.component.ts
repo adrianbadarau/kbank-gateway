@@ -17,9 +17,7 @@ export class ClientAccountDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ clientAccount }) => (this.clientAccount = clientAccount));
-    this.transactionService
-      .query({ accountId: this.clientAccount?.customerID })
-      .subscribe(transactions => (this.transactions = transactions.body));
+    this.transactionService.query({ accountId: this.clientAccount?.id }).subscribe(transactions => (this.transactions = transactions.body));
   }
 
   previousState(): void {
