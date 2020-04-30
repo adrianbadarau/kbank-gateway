@@ -31,6 +31,7 @@
   },
   "defaultProject": "bank",
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "44d58a73-168a-4a9e-8b6f-a05d019b7f70"
   }
 }

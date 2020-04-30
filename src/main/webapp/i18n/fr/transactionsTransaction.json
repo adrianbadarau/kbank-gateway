@@ -16,7 +16,12 @@
       "accountId": "Account Id",
       "value": "Value",
       "date": "Date",
-      "details": "Details"
+      "details": "Details",
+      "validate": {
+        "title": "Validation de Transaction",
+        "csvFile": "CSV File",
+        "addCsvFile": "Veuillez ajouter un fichier CSV"
+      }
     }
   },
   "transactionsApp": {

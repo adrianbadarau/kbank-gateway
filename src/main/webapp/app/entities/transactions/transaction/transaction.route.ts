@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
 import { JhiResolvePagingParams } from 'ng-jhipster';
-import { Observable, of, EMPTY } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 import { Authority } from 'app/shared/constants/authority.constants';
@@ -12,6 +12,7 @@ import { TransactionService } from './transaction.service';
 import { TransactionComponent } from './transaction.component';
 import { TransactionDetailComponent } from './transaction-detail.component';
 import { TransactionUpdateComponent } from './transaction-update.component';
+import { TransactionValidationComponent } from 'app/entities/transactions/transaction/transaction-validation/transaction-validation.component';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionResolve implements Resolve<ITransaction> {
@@ -82,6 +83,15 @@ export const transactionRoute: Routes = [
     data: {
       authorities: [Authority.USER],
       pageTitle: 'bankApp.transactionsTransaction.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'validate',
+    component: TransactionValidationComponent,
+    data: {
+      authorities: [Authority.ADMIN],
+      pageTitle: 'bankApp.transactionsTransaction.validate.title'
     },
     canActivate: [UserRouteAccessService]
   }

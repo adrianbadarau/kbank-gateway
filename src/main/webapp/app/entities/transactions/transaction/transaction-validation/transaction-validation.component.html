@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-product-heading" jhiTranslate="bankApp.transactionsTransaction.validate.addCsvFile">Add Csv File to validate</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankApp.transactionsTransaction.validate.csvFile" for="file">CSV File</label>
+                    <div>
+                        <input type="file" id="file" name="file" (change)="setFileData($event.target.files)" accept=".csv" jhiTranslate="bankApp.transactionsTransaction.validate.addCsvFile"/>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="failedTransactions?.length > 0">
+        <h2 jhiTranslate="bankApp.transactionsTransaction.errorTable.heading">You had the following errors</h2>
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort >
+                <th scope="col"  jhiSortBy="reference"><span jhiTranslate="bankApp.transactionsTransaction.reference">Reference</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="accountNumber"><span jhiTranslate="bankApp.transactionsTransaction.accountNumber">Account Number</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="description"><span jhiTranslate="bankApp.transactionsTransaction.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="startBalance"><span jhiTranslate="bankApp.transactionsTransaction.startBalance">Start Balance</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="mutation"><span jhiTranslate="bankApp.transactionsTransaction.mutation">Mutation</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"  jhiSortBy="endBalance"><span jhiTranslate="bankApp.transactionsTransaction.endBalance">End Balance</span> <fa-icon icon="sort"></fa-icon></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transaction of failedTransactions">
+                <td>{{ transaction.reference }}</td>
+                <td>{{ transaction.accountNumber }}</td>
+                <td>{{ transaction.description }}</td>
+                <td>{{ transaction.startBalance | currency }}</td>
+                <td>{{ transaction.mutation | currency }}</td>
+                <td>{{ transaction.endBalance | currency }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

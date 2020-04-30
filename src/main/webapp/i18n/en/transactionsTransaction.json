@@ -16,7 +16,21 @@
       "accountId": "Account Id",
       "value": "Value",
       "date": "Date",
-      "details": "Details"
+      "details": "Details",
+      "reference": "Reference",
+      "accountNumber": "Account Number",
+      "description": "Description",
+      "startBalance": "Start Balance",
+      "mutation": "Mutation",
+      "endBalance": "End Balance",
+      "validate": {
+        "title": "Transaction Validation",
+        "addCsvFile": "Transaction validation Processor",
+        "csvFile": "Csv file to validate"
+      },
+      "errorTable": {
+        "heading": "You had the following errors"
+      }
     }
   },
   "transactionsApp": {
