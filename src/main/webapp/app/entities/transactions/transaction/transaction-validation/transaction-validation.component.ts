@@ -13,12 +13,12 @@ import { ITransactionDTO } from 'app/shared/model/transactions/transactionDTO.mo
 })
 export class TransactionValidationComponent implements OnInit {
   isSaving = false;
-  private file: File;
-  private failedTransactions: ITransactionDTO[] = [];
+  private file: File | null | undefined;
+  failedTransactions: ITransactionDTO[] | undefined = [];
   editForm = this.fb.group({
     file: [null, Validators.required]
   });
-  private success = false;
+  success: boolean | undefined = false;
 
   constructor(protected eventManager: JhiEventManager, protected service: TransactionService, private fb: FormBuilder) {}
 
@@ -37,16 +37,16 @@ export class TransactionValidationComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    this.subscribeToSaveResponse(this.service.validate(this.file));
+    this.subscribeToSaveResponse(this.service.validate(this.file!!));
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<{ failedItems: ITransactionDTO[]; success: boolean }>>): void {
     result.subscribe(
       res => {
         this.isSaving = false;
-        this.success = res.body.success;
+        this.success = res?.body?.success;
         if (!this.success) {
-          this.failedTransactions = res.body.failedItems;
+          this.failedTransactions = res?.body?.failedItems;
         }
       },
       () => this.onSaveError()
